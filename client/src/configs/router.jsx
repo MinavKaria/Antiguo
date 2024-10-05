@@ -3,6 +3,7 @@ import Landing from "../pages/Landing";
 import Layout from "../pages/Layout";
 import Login from "../pages/Login";
 import ProductListingPage from "../pages/ProductListingPage";
+import ProductPage from "../pages/ProductPage";
 
 const router=createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router=createBrowserRouter([
             {
                 path:'/products',
                 element:<ProductListingPage/>
+            },
+            {
+                path:'/products/:id',
+                element:<ProductPage/>
             }
         ]
     },
