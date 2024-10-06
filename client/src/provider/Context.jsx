@@ -6,9 +6,12 @@ const Context = createContext()
 function ContextProvider({ children }) 
 {
   
+  const [userDetails, setUserDetails] = useState({});
+
+  const [isLogin,setIsLogin]=useState(false);
   
   return (
-    <Context.Provider value={{}}>
+    <Context.Provider value={{isLogin,setIsLogin,userDetails,setUserDetails}}>
       {children}
     </Context.Provider>
   )

@@ -94,7 +94,7 @@ const ProductListingPage = () => {
                     />
 
                     <h3 className="text-sm font-medium">{product.name.toUpperCase()}</h3>
-                    <p className="text-gray-600">${product.price}</p>
+                    <p className="text-gray-600">₹{product.price}</p>
                   </div>
                 ))}
           </div>
