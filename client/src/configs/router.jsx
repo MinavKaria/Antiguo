@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import ProductListingPage from "../pages/ProductListingPage";
 import ProductPage from "../pages/ProductPage";
 import Cart from "../pages/Cart";
-import SignupPage from "../pages/signup";
+import SignupPage from "../pages/Signup";
 
 const router=createBrowserRouter([
     {
