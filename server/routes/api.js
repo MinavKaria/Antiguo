@@ -1,5 +1,7 @@
 import express from 'express';
-import bodyParser from 'body-parser';
+import Product from '../models/product.js';
+import Order from '../models/orders.js';
+import User from '../models/user.js';
 
 const router = express.Router();
 

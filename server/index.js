@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import router from './routes/api.js';
+import router2 from './routes/upload.js';
 
 const app = express();
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(bodyParser.json({limit:"30mb",extended:true}));
 app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));  
 app.use(cors(corsOptions)); 
 app.use('/api', router);
+app.use('/pdf', router2);
 
 const mongo_url=process.env.MONGO_URL;
 

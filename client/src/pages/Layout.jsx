@@ -8,7 +8,7 @@ function Layout() {
     <>
       <Navbar />
       <div className="w-full">
-        <div className="container mx-auto">
+        <div className=" mx-auto">
           <Outlet />
         </div>
       </div>

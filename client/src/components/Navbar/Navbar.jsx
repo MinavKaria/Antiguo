@@ -57,13 +57,13 @@ const Navbar = () => {
           <button className="focus:outline-none">
             <span className="text-sm tracking-[20px]">MENU</span>
           </button>
-          <button className="focus:outline-none">
+          <Link className="focus:outline-none" to={'/search'}>
             <span className="text-sm tracking-[20px]">SEARCH</span>
-          </button>
+          </Link>
         </div>
 
 
-        <div className="text-2xl font-bold tracking-wide flex-1 text-center">ANTIGUO</div>
+        <Link className="text-2xl font-bold tracking-wide flex-1 text-center" to={'/'}>ANTIGUO</Link>
 
         <div className="hidden md:flex flex-1 justify-around items-center">
          {!isLogin ? (<button className="focus:outline-none">

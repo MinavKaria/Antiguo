@@ -6,6 +6,7 @@ import ProductListingPage from "../pages/ProductListingPage";
 import ProductPage from "../pages/ProductPage";
 import Cart from "../pages/Cart";
 import SignupPage from "../pages/Signup";
+import SearchPage from "../pages/Search";
 
 const router=createBrowserRouter([
     {
@@ -21,12 +22,16 @@ const router=createBrowserRouter([
                 element:<ProductListingPage/>
             },
             {
-                path:'/products/:id',
+                path:'/products/*',
                 element:<ProductPage/>
             },
             {
                 path:'/cart',
                 element:<Cart/>
+            },
+            {
+                path:'/search',
+                element:<SearchPage/>
             }
         ]
     },
