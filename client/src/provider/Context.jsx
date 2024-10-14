@@ -6,12 +6,13 @@ const Context = createContext()
 function ContextProvider({ children }) 
 {
   
+  const [cart, setCart] = useState([]);
   const [userDetails, setUserDetails] = useState({});
 
   const [isLogin,setIsLogin]=useState(false);
   
   return (
-    <Context.Provider value={{isLogin,setIsLogin,userDetails,setUserDetails}}>
+    <Context.Provider value={{isLogin,setIsLogin,userDetails,setUserDetails,cart, setCart}}>
       {children}
     </Context.Provider>
   )

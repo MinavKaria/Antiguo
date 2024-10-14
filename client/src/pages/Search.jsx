@@ -6,7 +6,6 @@ const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
 
-  // Fuse.js search configuration
   const fuse = new Fuse(clothingData, {
     keys: ['name', 'category'], 
     threshold: 0.4,
@@ -28,7 +27,6 @@ const SearchPage = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-300 via-purple-300 to-pink-200">
       <div className="max-w-2xl w-full mt-16 px-4 ">
         
-        {/* Search Input */}
         <input
           type="text"
           placeholder="Search for clothes..."
@@ -37,7 +35,6 @@ const SearchPage = () => {
           className="w-full p-4 mb-8 border border-transparent rounded-lg shadow-lg text-gray-700 bg-white placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 ease-in-out"
         />
 
-        {/* Search Results */}
         {results.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {results.map((item) => (
@@ -60,7 +57,6 @@ const SearchPage = () => {
           </div>
         )}
 
-        {/* No Results Message */}
         {results.length === 0 && searchTerm && (
           <div className="text-center mt-10">
             <p className="text-lg text-gray-500">No results found for "{searchTerm}"</p>

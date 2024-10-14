@@ -7,6 +7,8 @@ import ProductPage from "../pages/ProductPage";
 import Cart from "../pages/Cart";
 import SignupPage from "../pages/Signup";
 import SearchPage from "../pages/Search";
+import VendorSide from "../pages/VendorSide";
+import Profile from "../pages/Profile";
 
 const router=createBrowserRouter([
     {
@@ -32,6 +34,10 @@ const router=createBrowserRouter([
             {
                 path:'/search',
                 element:<SearchPage/>
+            },
+            {
+                path:'/profile',
+                element:<Profile/>
             }
         ]
     },
@@ -44,13 +50,18 @@ const router=createBrowserRouter([
         element:<SignupPage/>
     },
     {
+        path:'/vendor',
+        element:<VendorSide/>
+    },
+    {
         path:"*",
         element:(
             <>
                 <h1>404 Page not found</h1>
             </>
         )
-    }
+    },
+    
 ])
 
 export default router;

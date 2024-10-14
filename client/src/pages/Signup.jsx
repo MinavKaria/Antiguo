@@ -3,16 +3,23 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../provider/Context";
-import  { auth, googleProvider, provider} from '../configs/firebase';
+import { auth, googleProvider, provider } from "../configs/firebase";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import ReactLoading from "react-loading";
+
+const notify = () => toast.success("Successfully registered!");
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -23,41 +30,68 @@ const SignupPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
+      setLoading(false);
+      return;
     } else {
       setError("");
+    }
+
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/api/users",
+        formData
+      );
+
+      console.log(res.data);
+     
+
+      notify();
+    
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+
+    } catch (err) {
+      console.log(err);
+      setError("Failed to register user");
+      setLoading(false);
+
+    } finally {
       console.log("Form submitted", formData);
     }
-  };
+};
+
 
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    firstName: '',
-    lastname: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    firstName: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const {isLogin,setIsLogin,setUserDetails}=useGlobalContext();
-
+  const { isLogin, setIsLogin, setUserDetails } = useGlobalContext();
 
   const handleGoogleSignIn = async () => {
     try {
-   
       const result = await signInWithPopup(auth, googleProvider);
-      
+
       const user = result.user;
       console.log(user);
       setIsLogin(true);
       setUserDetails(user);
-      const uid=user.uid;
-      localStorage.setItem('user', JSON.stringify(user));
+      const uid = user.uid;
+      localStorage.setItem("user", JSON.stringify(user));
       console.log("Google sign-in success:", user);
-      
+
       navigate("/");
     } catch (error) {
       console.error("Google sign-in error:", error);
@@ -65,9 +99,9 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full bg-white shadow-md rounded-lg p-8 space-y-6 scale-75">
-        <div className="text-center mb-8">
+    <div className=" min-h-screen flex items-center justify-center bg-gray-100">
+      <div className={ loading ? `blur-sm`:`` + `relative max-w-md w-full bg-white shadow-md rounded-lg p-8 space-y-6 scale-75`}>
+        <div className="text-center mb-8 ">
           <h1 className="text-4xl font-bold text-gray-800">Antiguo</h1>
           <p className="text-gray-500">Signup to your account</p>
         </div>
@@ -80,9 +114,9 @@ const SignupPage = () => {
             </label>
             <input
               type="text"
-              name="name"
-              id="name"
-              value={formData.name}
+              name="username"
+              id="username"
+              value={formData.username}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               required
@@ -137,6 +171,7 @@ const SignupPage = () => {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+            onClick={handleSubmit}
           >
             Create Account
           </button>
@@ -147,19 +182,26 @@ const SignupPage = () => {
             <div className="w-full border-t border-gray-300"></div>
           </div>
           <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Or continue with</span>
+            <span className="px-2 bg-white text-gray-500">
+              Or continue with
+            </span>
           </div>
         </div>
 
-
         <div className="grid grid-cols-1 gap-3">
-          <button className="w-full py-2 px-4 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50" onClick={()=>{
-            handleGoogleSignIn();
-          }}>
+          <button
+            className="w-full py-2 px-4 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50"
+            onClick={() => {
+              handleGoogleSignIn();
+            }}
+          >
             <span className="sr-only">Sign in with Google</span>
-              <img src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png" alt="" className="w-5" />
+            <img
+              src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+              alt=""
+              className="w-5"
+            />
           </button>
-          
         </div>
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
@@ -168,6 +210,17 @@ const SignupPage = () => {
           </Link>
         </p>
       </div>
+      <Toaster />
+      {loading && <div className="fixed inset-0 flex justify-center items-center">
+        <div className="ml-40 w-52 h-52">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"black"}
+            height={"20%"}
+            width={"20%"}
+          />
+        </div>
+      </div>}
     </div>
   );
 };

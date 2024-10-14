@@ -1,4 +1,4 @@
-// src/data/clothingData.js
+
 export const clothingData = [
     {
       id: 1,

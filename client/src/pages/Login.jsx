@@ -6,16 +6,31 @@ import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../provider/Context";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+import ReactLoading from "react-loading";
+
+const notify = () => toast.success("Successfully logged in!");
+
 const Login = () => {
 
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    firstName: '',
-    lastname: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    password: "",
   });
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const {isLogin,setIsLogin,setUserDetails}=useGlobalContext();
 
@@ -39,6 +54,26 @@ const Login = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try
+    {
+      const res=await axios.post('http://localhost:3000/api/login',formData);
+      console.log(res.data);
+      const user=res.data;
+      setIsLogin(true)
+      const id=user._id;
+      localStorage.setItem('user', JSON.stringify(user));
+      navigate("/");
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+
+  };
+
 
   
   return (
@@ -51,7 +86,7 @@ const Login = () => {
         </div>
 
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <div className="mb-6">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -60,8 +95,11 @@ const Login = () => {
             <input
               type="email"
               id="email"
+              name='email'
               className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="you@example.com"
+              value={formData.email}
+              onChange={handleChange}
             />
           </div>
 
@@ -73,8 +111,11 @@ const Login = () => {
             <input
               type="password"
               id="password"
+              name='password'
               className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
               placeholder="••••••••"
+              value={formData.password}
+              onChange={handleChange}
             />
           </div>
 

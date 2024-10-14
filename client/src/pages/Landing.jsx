@@ -84,7 +84,7 @@ const LandingPage = () => {
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <h3 className="mt-4 text-xl font-medium">Product 1</h3>
-            <p className="mt-2 text-gray-500">$29.99</p>
+            <p className="mt-2 text-gray-500">₹29.99</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <img
@@ -93,7 +93,7 @@ const LandingPage = () => {
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <h3 className="mt-4 text-xl font-medium">Product 2</h3>
-            <p className="mt-2 text-gray-500">$39.99</p>
+            <p className="mt-2 text-gray-500">₹39.99</p>
           </div>
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <img
@@ -102,7 +102,7 @@ const LandingPage = () => {
               className="w-full h-48 object-cover rounded-t-lg"
             />
             <h3 className="mt-4 text-xl font-medium">Product 3</h3>
-            <p className="mt-2 text-gray-500">$49.99</p>
+            <p className="mt-2 text-gray-500">₹49.99</p>
           </div>
         </div>
       </div>
@@ -113,9 +113,10 @@ const LandingPage = () => {
         <p className="mt-4 text-lg">
           Become part of our growing community and get access to exclusive deals and content.
         </p>
-        <button className="mt-6 bg-white text-indigo-600 py-2 px-6 rounded-full hover:bg-gray-200">
+        <br />
+        <Link className="mt-6 bg-white text-indigo-600 py-2 px-6 rounded-full hover:bg-gray-200" to={'/signup'}>
           Sign Up Now
-        </button>
+        </Link>
       </div>
 
      
