@@ -63,5 +63,33 @@ const dummyData = [
     },
 
   ];
+  
+  const similarProducts = [
+    {
+      name: "Waistcoat with V-neck",
+      price: 28,
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/images%2Fdd1249a7-ec09-4d8c-926a-4cfe47f9dcfc.png?alt=media&token=3dd9b6c1-e3d3-4bdf-b8c2-001e0c93f2f6",
+    },
+    {
+      name: "Animal Print Jacket",
+      price: 35,
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/images%2F3ec44f48-67ab-4796-bad2-ff325b6b94a3.png?alt=media&token=b83c373f-5faa-4dd2-b3ac-dac0419b9f7a",
+    },
+    {
+      name: "Buttoned Sleeveless Dress",
+      price: 40,
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/images%2Fc96b954d-cb34-4d22-93f2-f76c85c4085d.png?alt=media&token=725a6570-83eb-4357-a3d7-2f34c1596d79",
+    },
+    {
+      name: "Long Coat with Belt",
+      price: 50,
+      image:
+        "https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/images%2F979d07d7-38f5-4eeb-bbe8-0efccd11869c.png?alt=media&token=4220bb9b-c688-4263-8622-a4c9b450c9b9",
+    },
+  ];
 
   export default dummyData;
+  export {similarProducts};

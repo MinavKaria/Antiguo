@@ -3,18 +3,42 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 import dummyData from './../data/DummyData';
+import axios from 'axios';
+import ProductCard from "../components/ProductCard";
 
 const ProductListingPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setProducts(dummyData);
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/products');
+      console.log(response.data);
+      setProducts(response.data);
       setLoading(false);
-    }, 2000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
+
+    scrollToTop();
+
+    const fetchData = async () => {
+      await fetchProducts();
+    };
+
+    setTimeout(() => {
+      fetchData();
+    }, 500); 
   }, []);
+
 
   return (
     <div className="bg-white min-h-screen">
@@ -33,16 +57,9 @@ const ProductListingPage = () => {
                     </div>
                   ))
               : products.map((product, index) => (
-                  <Link key={index} className="text-center" to={'/products/'+product.id}>
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="object-cover aspect-w-2 aspect-h-2 mb-4 w-full h-96 sm:w-80 sm:h-[500px] lg:w-[400px] lg:h-[600px]"
-                    />
-
-                    <h3 className="text-sm font-medium">{product.name.toUpperCase()}</h3>
-                    <p className="text-gray-600">₹{product.price}</p>
-                  </Link>
+                  <>
+                    <ProductCard key={index} product={product} />
+                  </>
                 ))}
           </div>
         </div>

@@ -1,10 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
-import { clothingData } from '../data/ClothingData';
+// import { clothingData } from '../data/ClothingData';
+import axios from 'axios';
+
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState([]);
+
+  const [clothingData, setClothingData] = useState([
+
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/products');
+        console.log(response.data);
+        setClothingData(response.data);
+        console.log(clothingData);
+      } catch (error) {
+        console.error('Error fetching clothing data', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const fuse = new Fuse(clothingData, {
     keys: ['name', 'category'], 
@@ -50,7 +71,7 @@ const SearchPage = () => {
                 <div className="mt-4">
                   <h3 className="text-lg font-semibold text-gray-900">{item.name}</h3>
                   <p className="text-gray-500">{item.category}</p>
-                  <p className="text-indigo-600 font-bold mt-2">{item.price}</p>
+                  <p className="text-indigo-600 font-bold mt-2"> ₹ {item.price}</p>
                 </div>
               </div>
             ))}

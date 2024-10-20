@@ -106,6 +106,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function VendorUpload() {
   const [file, setFile] = useState(null);
@@ -119,6 +120,7 @@ function VendorUpload() {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [stock, setStock] = useState('');
+  const [rentPrice, setRentedPrice] = useState('');
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -170,6 +172,7 @@ function VendorUpload() {
       category,
       stock: Number(stock),
       imageUrl: cdnLink, 
+      rentPrice:Number(rentPrice)
     };
 
     try {
@@ -189,7 +192,16 @@ function VendorUpload() {
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <>
+    <div className="container mx-auto py-10"> 
+    
+      <div className=' flex justify-around '>
+        <Link to="/vendor/products" className="text-blue-500 py-2">View Products</Link>
+        <Link to="/vendor/orders" className="text-blue-500">View Orders</Link>
+        <Link to="/vendor/rented" className="text-blue-500">View Rented Orders</Link>
+      </div>
+
+
       <h1 className="text-2xl font-bold mb-5">Vendor Upload</h1>
       
       
@@ -268,10 +280,22 @@ function VendorUpload() {
             />
           </div>
 
+          <div>
+            <label className="block text-gray-700">Rented Price:</label>
+            <input
+              type="number"
+              value={rentPrice}
+              onChange={(e) => setRentedPrice(e.target.value)}
+              required
+              className="border p-2 w-full"
+            />
+          </div>
+
           <button type="submit" className="bg-green-500 text-white p-2 rounded">Submit Product</button>
         </form>
       )}
     </div>
+    </>
   );
 }
 

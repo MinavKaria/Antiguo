@@ -32,7 +32,12 @@ const productSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    rentPrice: {
+        type: Number,
+        required: true,
+        min: 0
+    },
 });
 
 const Product = mongoose.model('Product', productSchema);

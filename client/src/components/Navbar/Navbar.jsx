@@ -1,123 +1,97 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useGlobalContext } from '../../provider/Context';
+import { useGlobalContext } from "../../provider/Context";
 import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const auth = getAuth();
   const navigate = useNavigate();
 
-  const {isLogin,setIsLogin,userDetails,setUserDetails}=useGlobalContext();
-  const auth = getAuth();
-
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    const user=JSON.parse(localStorage.getItem('user'));
-    if(user){
+    const user = localStorage.getItem("user");
+    if (user) {
       setIsLogin(true);
-      setUserDetails(user);
+      console.log("User logged in");
+      console.log(userDetails);
     }
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
 
-  useEffect(() => {
-    setIsDropdownOpen(windowWidth <= 1060);
-  }, [windowWidth]);
-
- ;
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-
-    if (isDropdownOpen == true) {
-      document.body.classList.toggle('no-scroll');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setIsLogin(false);
+      setUserDetails({});
+      localStorage.removeItem("user");
+      console.log("User signed out");
+    } catch (error) {
+      console.error("Error during sign out:", error);
     }
-    else {
-      document.body.classList.toggle('no-scroll');
-    }
-
   };
+
+  const { isLogin, setIsLogin, userDetails, setUserDetails } =
+    useGlobalContext();
 
   return (
     <nav className="bg-[#121213] text-white p-4">
-      <div className="container mx-auto  justify-between items-center flex">
- 
-        <div className=" hidden lg:flex flex-1 justify-around items-center">
-          <button className="focus:outline-none">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="hidden lg:flex flex-1 justify-around items-center">
+          <Link className="focus:outline-none" to="/products">
             <span className="text-sm tracking-[20px]">MENU</span>
-          </button>
-          <Link className="focus:outline-none" to={'/search'}>
+          </Link>
+          <Link className="focus:outline-none" to="/search">
             <span className="text-sm tracking-[20px]">SEARCH</span>
           </Link>
         </div>
 
-
-        <Link className="text-2xl font-bold tracking-wide flex-1 text-center" to={'/'}>ANTIGUO</Link>
+        <Link
+          className="text-2xl font-bold tracking-wide flex-1 text-center"
+          to="/"
+        >
+          ANTIGUO
+        </Link>
 
         <div className="hidden md:flex flex-1 justify-around items-center">
-         {!isLogin ? (<button className="focus:outline-none">
-            <Link to="/signup"  className="text-sm tracking-[20px]">SIGN IN</Link>
-          </button>):
-          (
-            <button className="flex items-center" onClick={()=>{
-              signOut(auth).then(() => {
-                console.log('User signed out');
-              }).catch((error) => {
-                console.log(error);
-              });
-              setIsLogin(false);
-              setUserDetails({});
-              localStorage.removeItem('user');
-            }}>
-            Logout
-          </button>
-          )}
-          <div className='flex gap-5'>
           {!isLogin ? (
-                <>
-                  <div
-                    className="flex"
-                    onClick={() => {
-                      navigate("/sign");
-                    }}
-                  >
-                    <img src="user.svg" alt="" />
-                  
-                  </div>
-                </>
+            <Link
+              to="/login"
+              className="text-sm tracking-[20px] focus:outline-none"
+            >
+              LOG IN
+            </Link>
+          ) : (
+            <button
+              className="focus:outline-none flex items-center"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
+
+          <div className="flex gap-5 items-center">
+            <Link className="flex" to="/profile">
+              {!isLogin  ? (
+                <img
+                  src={"https://freesvg.org/img/abstract-user-flat-4.png"}
+                  alt="User Avatar"
+                  className="rounded-full w-10"
+                />
               ) : (
                 <>
-                  <div
-                    className="flex"
-                    onClick={() => {
-                    
-                    }}
-                  >
-                    <img
-                      src={
-                        userDetails.photoURL ||
-                        "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI="
-                      }
-                      alt=""
-                      className=" rounded-full w-10 mr-5"
-                    />
-                   
-                  </div>
+                  <img
+                    src={`${userDetails.photoURL || 'https://freesvg.org/img/abstract-user-flat-4.png'}`}
+                    alt="User Avatar"
+                    className=" rounded-full w-10"
+                    loading="lazy"
+                  />
                 </>
               )}
+            </Link>
+
             <Link to="/cart" className="flex">
-              <img src="/cart.svg" alt="" />
+              <img src="/cart.svg" alt="Cart Icon" />
             </Link>
           </div>
         </div>

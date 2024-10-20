@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     isAdmin: {
         type: Boolean,
         default: false
+    },
+    walletAmount: {
+        type: Number,
+        default: 0
     }
 });
 

@@ -11,6 +11,7 @@ import axios from "axios";
 import ReactLoading from "react-loading";
 
 const notify = () => toast.success("Successfully logged in!");
+const notify2 = () => toast.error("Something went wrong!");
 
 const Login = () => {
 
@@ -25,6 +26,8 @@ const Login = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -37,20 +40,28 @@ const Login = () => {
 
   const handleGoogleSignIn = async () => {
     try {
-   
+      setLoading(true);
       const result = await signInWithPopup(auth, googleProvider);
-      
       const user = result.user;
-      console.log(user);
       setIsLogin(true);
       setUserDetails(user);
       const uid=user.uid;
       localStorage.setItem('user', JSON.stringify(user));
       console.log("Google sign-in success:", user);
       
-      navigate("/");
     } catch (error) {
       console.error("Google sign-in error:", error);
+    }
+    finally
+    {
+      notify();
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+
+      
+      
     }
   };
 
@@ -59,17 +70,26 @@ const Login = () => {
     
     try
     {
+      setLoading(true);
       const res=await axios.post('http://localhost:3000/api/login',formData);
       console.log(res.data);
       const user=res.data;
+      
       setIsLogin(true)
       const id=user._id;
       localStorage.setItem('user', JSON.stringify(user));
-      navigate("/");
+      notify();
+      
+      setTimeout(() => {
+        navigate("/");
+        setLoading(false);
+      }, 2000);
     }
     catch(error)
     {
       console.log(error);
+      setLoading(false);
+      notify2();
     }
 
   };
@@ -77,8 +97,9 @@ const Login = () => {
 
   
   return (
+    <>
     <div className="flex items-center justify-center min-h-screen bg-gray-100 ">
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full scale-75">
+      <div className={`${loading ?'blur-sm':''} bg-white p-8 rounded-lg shadow-lg max-w-md w-full scale-75`}>
 
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800">Antiguo</h1>
@@ -180,6 +201,18 @@ const Login = () => {
         </p>
       </div>
     </div>
+    {loading && <div className="fixed inset-0 flex justify-center items-center">
+        <div className="ml-40 w-52 h-52">
+          <ReactLoading
+            type={"spinningBubbles"}
+            color={"black"}
+            height={"20%"}
+            width={"20%"}
+          />
+        </div>
+      </div>}
+    <Toaster />
+    </>
   );
 };
 
