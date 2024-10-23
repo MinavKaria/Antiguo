@@ -74,40 +74,8 @@ const LandingPage = () => {
       </div>
 
       
-      <div className="py-16 bg-gray-50 text-center">
-        <h2 className="text-3xl font-semibold">Featured Products</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img
-              src="https://via.placeholder.com/400x300.png?text=Product+1"
-              alt="Product 1"
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
-            <h3 className="mt-4 text-xl font-medium">Product 1</h3>
-            <p className="mt-2 text-gray-500">₹29.99</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img
-              src="https://via.placeholder.com/400x300.png?text=Product+2"
-              alt="Product 2"
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
-            <h3 className="mt-4 text-xl font-medium">Product 2</h3>
-            <p className="mt-2 text-gray-500">₹39.99</p>
-          </div>
-          <div className="bg-white p-4 rounded-lg shadow-lg">
-            <img
-              src="https://via.placeholder.com/400x300.png?text=Product+3"
-              alt="Product 3"
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
-            <h3 className="mt-4 text-xl font-medium">Product 3</h3>
-            <p className="mt-2 text-gray-500">₹49.99</p>
-          </div>
-        </div>
-      </div>
+      
 
- 
       <div className="py-16 bg-indigo-600 text-center text-white">
         <h2 className="text-3xl font-semibold">Join Us Today!</h2>
         <p className="mt-4 text-lg">
