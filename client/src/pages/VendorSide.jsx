@@ -188,6 +188,15 @@ function VendorUpload() {
     } catch (error) {
       console.error("Error uploading product:", error);
       setError("Failed to upload product. Please try again.");
+    }finally
+    {
+      setName('');
+      setPrice('');
+      setDescription('');
+      setCategory('');
+      setStock('');
+      setRentedPrice('');
+      setCdnLink('');
     }
   };
 
