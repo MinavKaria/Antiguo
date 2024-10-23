@@ -96,7 +96,16 @@ const ProductListingPage = () => {
             <div>
               <h2 className="font-bold mb-4">Categories</h2>
               <ul className="space-y-2">
-                {categories.map((category, index) => (
+                {loading ? (
+                  <>
+                  <Skeleton height={20} />
+                  <Skeleton height={20} />
+                  <Skeleton height={20} />
+
+                  </>
+                ):(
+                  <>
+                  {categories.map((category, index) => (
                   <CategoryLine
                     key={index}
                     category={category}
@@ -106,13 +115,19 @@ const ProductListingPage = () => {
                     ]}
                   />
                 ))}
+                  </>
+                )}
+               
               </ul>
             </div>
 
             <div>
               <h2 className="font-bold mb-4">Filter by Price</h2>
               <div className="flex flex-col space-y-4">
-                <div>
+               {loading ? <>
+                <Skeleton height={40} />
+                <Skeleton height={40} />
+               </> :<> <div>
                   <label className="block text-gray-700">Min Price:</label>
                   <input
                     type="number"
@@ -131,7 +146,9 @@ const ProductListingPage = () => {
                     className="border p-2 w-full"
                     min="0"
                   />
+                  
                 </div>
+                </>}
               </div>
             </div>
           </div>
