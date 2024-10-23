@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
 // import { clothingData } from '../data/ClothingData';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const SearchPage = () => {
@@ -58,7 +59,8 @@ const SearchPage = () => {
 
         {results.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {results.map((item) => (
+            {results.map((item,index) => (
+              <Link to={'/products/'+item._id}>
               <div
                 key={item.id}
                 className="bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300"
@@ -74,6 +76,7 @@ const SearchPage = () => {
                   <p className="text-indigo-600 font-bold mt-2"> ₹ {item.price}</p>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         )}
