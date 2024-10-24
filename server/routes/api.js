@@ -174,6 +174,11 @@ router.get('/orders/:id', async (req, res) => {
     res.json(order);
 });
 
+router.get('/product/category/:category', async (req, res) => {
+    const products = await Product.find({ category: req.params.category });
+    res.json(products);
+}
+);
 
 
 

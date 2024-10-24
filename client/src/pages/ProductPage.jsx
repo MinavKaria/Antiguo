@@ -64,6 +64,14 @@ const ProductPage = ({ isLoading }) => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [id]);
+  
+
   return (
     <div className="container mx-auto p-16">
       <div className="flex flex-col md:flex-row">
@@ -137,7 +145,7 @@ const ProductPage = ({ isLoading }) => {
         </div>
       </div>
 
-      <SimilarItem similarProducts={similarProducts} isLoading={isLoading} />
+      <SimilarItem isLoading={isLoading} category={product.category} currentItem={product._id} />
     </div>
   );
 };
