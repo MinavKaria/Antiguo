@@ -25,7 +25,7 @@ const ProfilePage = () => {
         }
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/wallet/${userDetails._id}`
+            `https://mern-project-antiguo.vercel.app/api/wallet/${userDetails._id}`
           );
           console.log(response.data);
           setWallet(response.data);

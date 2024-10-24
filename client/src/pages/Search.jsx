@@ -16,7 +16,7 @@ const SearchPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/products');
+        const response = await axios.get('https://mern-project-antiguo.vercel.app/api/products');
         console.log(response.data);
         setClothingData(response.data);
         console.log(clothingData);

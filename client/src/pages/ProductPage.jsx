@@ -17,7 +17,7 @@ const ProductPage = ({ isLoading }) => {
   // Fetch product details
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/products/${id}`);
+      const response = await axios.get(`https://mern-project-antiguo.vercel.app/api/products/${id}`);
       setProduct(response.data);
     } catch (error) {
       console.error(error);

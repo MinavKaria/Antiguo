@@ -15,7 +15,7 @@ function RentedOrderPage() {
         const id = user._id;
 
         try {
-          const response = await axios.get(`http://localhost:3000/api/orders/${id}`);
+          const response = await axios.get(`https://mern-project-antiguo.vercel.app/api/orders/${id}`);
           setOrders(response.data);
         } catch (err) {
           setError(err.message);
@@ -99,7 +99,7 @@ function RentedOrderPage() {
                           {
                             try {
     
-                            const res=await axios.put(`http://localhost:3000/api/orders/return`, { orderId, productId });
+                            const res=await axios.put(`https://mern-project-antiguo.vercel.app/api/orders/return`, { orderId, productId });
                             console.log(res.data);
 
                             setOrders(orders.map(order => {

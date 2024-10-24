@@ -16,7 +16,7 @@ function VendorRentedSide() {
         const id = user._id;
 
         try {
-          const response = await axios.get(`http://localhost:3000/api/orders/${id}`);
+          const response = await axios.get(`https://mern-project-antiguo.vercel.app/api/orders/${id}`);
           setOrders(response.data);
         } catch (err) {
           setError(err.message);
@@ -100,7 +100,7 @@ function VendorRentedSide() {
                           {
                             try {
     
-                            const res=await axios.put(`http://localhost:3000/api/orders/return`, { orderId, productId });
+                            const res=await axios.put(`https://mern-project-antiguo.vercel.app/api/orders/return`, { orderId, productId });
                             console.log(res.data);
 
                             setOrders(orders.map((order) => {
@@ -135,14 +135,14 @@ function VendorRentedSide() {
                           {
                             try {
     
-                            const res=await axios.put(`http://localhost:3000/api/orders/return`, { orderId, productId });
+                            const res=await axios.put(`https://mern-project-antiguo.vercel.app/api/orders/return`, { orderId, productId });
                             console.log(res.data);
                             console.log("Return accepted");
                             console.log(order.user)
 
                             try{
                                 const user_id=order.user;
-                                const response = await axios.get(`http://localhost:3000/api/wallet/${user_id}`);
+                                const response = await axios.get(`https://mern-project-antiguo.vercel.app/api/wallet/${user_id}`);
           setCurrentWallet(response.data);
                                 console.log(response.data);
                                 const numberofdays=calculateDaysRented(order.createdAt)-1;
@@ -152,7 +152,7 @@ function VendorRentedSide() {
 
                                 try
                                 {
-                                    const response = await axios.put(`http://localhost:3000/api/wallet/${user_id}`, {
+                                    const response = await axios.put(`https://mern-project-antiguo.vercel.app/api/wallet/${user_id}`, {
                       walletAmount: amountToBeAdded,
                     });
                                 }

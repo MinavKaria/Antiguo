@@ -9,7 +9,7 @@ function VendorOrders() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/orders"); // Assuming an API endpoint to get all orders
+        const response = await axios.get("https://mern-project-antiguo.vercel.app/api/orders"); // Assuming an API endpoint to get all orders
         setOrders(response.data);
       } catch (err) {
         setError(err.message);
@@ -104,7 +104,7 @@ function VendorOrders() {
                           const update = async () => {
                             try {
                               const res =await axios.put(
-                                `http://localhost:3000/api/orders/${order._id}`,
+                                `https://mern-project-antiguo.vercel.app/api/orders/${order._id}`,
                                 { status: 1 }
                               );
                               console.log(res.data);

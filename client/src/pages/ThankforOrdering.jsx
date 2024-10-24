@@ -20,7 +20,7 @@ function ThankforOrdering() {
             return;
         }
         const response = await axios.post(
-            "http://localhost:3000/mail/send-email",
+            "https://mern-project-antiguo.vercel.app/mail/send-email",
             {
                 to: email,
                 subject: "Order Confirmation",

@@ -26,7 +26,7 @@ const ProductListingPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/products");
+      const response = await axios.get("https://mern-project-antiguo.vercel.app/api/products");
       const products = response.data;
       const allCategories = products.map((product) => product.category);
       const uniqueCategories = [...new Set(allCategories)];

@@ -30,7 +30,7 @@
 //     formData.append("type", fileType);
 
 //     try {
-//       const response = await axios.post("http://localhost:3000/media/upload", formData, {
+//       const response = await axios.post("https://mern-project-antiguo.vercel.app/media/upload", formData, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //         },
@@ -142,7 +142,7 @@ function VendorUpload() {
 
     try {
      
-      const response = await axios.post("http://localhost:3000/media/upload", formData, {
+      const response = await axios.post("https://mern-project-antiguo.vercel.app/media/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -177,7 +177,7 @@ function VendorUpload() {
 
     try {
  
-      const response = await axios.post("http://localhost:3000/api/products", productData, {
+      const response = await axios.post("https://mern-project-antiguo.vercel.app/api/products", productData, {
         headers: {
           "Content-Type": "application/json",
         },

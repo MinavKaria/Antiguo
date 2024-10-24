@@ -71,7 +71,7 @@ const Login = () => {
     try
     {
       setLoading(true);
-      const res=await axios.post('http://localhost:3000/api/login',formData);
+      const res=await axios.post('https://mern-project-antiguo.vercel.app/api/login',formData);
       console.log(res.data);
       const user=res.data;
       

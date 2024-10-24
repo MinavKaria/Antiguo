@@ -15,7 +15,7 @@ function AddtoWallet() {
         const user = JSON.parse(localStorage.getItem("user"));
         const userId = user._id;
         try {
-          const response = await axios.get(`http://localhost:3000/api/wallet/${userId}`);
+          const response = await axios.get(`https://mern-project-antiguo.vercel.app/api/wallet/${userId}`);
           setCurrentWallet(response.data);
         } catch (err) {
           console.log(err);
@@ -129,7 +129,7 @@ function AddtoWallet() {
                   const userId = user._id;
                   console.log(userId);
                   try {
-                    const response = await axios.put(`http://localhost:3000/api/wallet/${userId}`, {
+                    const response = await axios.put(`https://mern-project-antiguo.vercel.app/api/wallet/${userId}`, {
                       walletAmount: currentWallet + amount,
                     });
                     setCurrentWallet(response.data);
