@@ -26,7 +26,7 @@ const LandingPage = () => {
           playsInline
           preload="auto"
         >
-          <source src="https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/Flowers%20-%20Video%20Background%20HD%201080p%20-%20iBrand%20Boost%20(1080p%2C%20h264%2C%20youtube).mp4?alt=media&token=c033df13-814a-4871-bb67-c8fdd3edf330" type="video/mp4" />
+          <source src="https://firebasestorage.googleapis.com/v0/b/acm-bruh.appspot.com/o/intro.mp4?alt=media&token=eba406f3-7d2f-489c-b2a3-e63073dabd72" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         <div>
