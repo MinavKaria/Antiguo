@@ -23,8 +23,9 @@ Welcome to **Antiguo**! This platform allows users to buy or rent designer cloth
 - **Browse & Search**: Discover designer outfits through categories, keywords, and filters.
 - **Rent or Buy Options**: Select between renting an outfit for an event or purchasing it to keep.
 - **Secure Payments**: Checkout securely with integrated payment options.
-- **Wishlist**: Save favorite outfits for easy access later.
+- **Cart**: Save favorite outfits in your cart to buy later.
 - **Responsive Design**: Optimized for seamless use on mobile and desktop devices.
+- **Vendor Side Acesss**: Vendors can Access The products and upload new products and change the status of the products.
 
 ## Installation
 
@@ -48,7 +49,6 @@ Welcome to **Antiguo**! This platform allows users to buy or rent designer cloth
 
 3. **Environment Setup**:
    - In the `frontend` and `backend` directories, create a `.env` file.
-   - Add your Firebase, MongoDB, and other necessary API keys and configurations.
 
 4. **Run the Development Servers**:
    - Frontend:
