@@ -76,11 +76,11 @@ Welcome to **Antiguo**! This platform allows users to buy or rent designer cloth
 
 ```
 antiguo/
-├── frontend/              # React & Tailwind CSS frontend
+├── client/              # React & Tailwind CSS frontend
 │   ├── src/
 │   ├── public/
 │   └── .env
-├── backend/               # Express & Node.js backend
+├── server/               # Express & Node.js backend
 │   ├── models/            # Mongoose schemas for MongoDB
 │   ├── routes/            # API routes
 │   └── .env
