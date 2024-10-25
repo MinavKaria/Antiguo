@@ -9,7 +9,6 @@ Welcome to **Antiguo**! This platform allows users to buy or rent designer cloth
 - [Technologies Used](#technologies-used)
 - [Folder Structure](#folder-structure)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---
