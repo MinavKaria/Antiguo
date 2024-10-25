@@ -1,7 +1,3 @@
-Certainly! Here’s the entire README file formatted in Markdown:
-
----
-
 # Antiguo - Designer Fashion Buy & Rent Platform
 
 Welcome to **Antiguo**! This platform allows users to buy or rent designer clothes in India, making high-fashion accessible, sustainable, and convenient for everyone.
@@ -35,7 +31,7 @@ Welcome to **Antiguo**! This platform allows users to buy or rent designer cloth
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/antiguo.git
+   git clone https://github.com/MinavKaria/antiguo.git
    cd antiguo
    ```
 
@@ -100,17 +96,6 @@ antiguo/
 - **Checkout**: Complete the payment process and receive confirmation for rentals or purchases.
 - **Manage Orders**: View and track orders, return rentals, and manage wishlists.
 
-## Contributing
-
-We welcome contributions! To get started:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Commit your changes (`git commit -m 'Add your feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Create a pull request.
-
-Please ensure that your code adheres to our coding standards and that all tests pass before submitting.
 
 ## License
 
